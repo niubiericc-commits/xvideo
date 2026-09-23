@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Age Verification</title>
 
   <style>
@@ -14,106 +15,168 @@
       margin: 0;
       width: 100%;
       height: 100%;
-      font-family: Arial, sans-serif;
       background: #111;
       color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .page {
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
+
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
-    .age-box {
+    .box {
       width: 90%;
-      max-width: 440px;
+      max-width: 430px;
+
+      background: #202020;
+
       padding: 35px;
-      background: #222;
+
       border-radius: 12px;
+
       text-align: center;
     }
 
     h1 {
-      margin: 0 0 20px;
+      margin-top: 0;
       font-size: 28px;
     }
 
     p {
       color: #bbb;
       line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     button {
-      display: block;
       width: 100%;
+
       padding: 15px;
-      margin-top: 15px;
-      border: 0;
+
+      margin-top: 12px;
+
+      border: none;
+
       border-radius: 6px;
+
       font-size: 17px;
+
       cursor: pointer;
     }
 
-    .yes {
+    #enterButton {
       background: #e53935;
-      color: #fff;
+      color: white;
     }
 
-    .no {
+    #exitButton {
       background: #444;
-      color: #fff;
-    }
-
-    #confirmed {
-      display: none;
-      margin-top: 20px;
-      color: #aaa;
+      color: white;
     }
   </style>
 </head>
 
 <body>
 
-<div class="page">
-  <div class="age-box">
+  <div class="page">
 
-    <h1>Age Verification</h1>
+    <div class="box">
 
-    <p>
-      This page is intended for adults.
-      Please confirm that you are 18 years of age or older.
-    </p>
+      <h1>Age Verification</h1>
 
-    <button class="yes" id="enterButton">
-      I am 18 or older
-    </button>
+      <p>
+        This website contains content intended for adults.
+        Please confirm that you are 18 years of age or older.
+      </p>
 
-    <button class="no" onclick="history.back()">
-      I am under 18
-    </button>
+      <button id="enterButton">
+        I am 18 or older
+      </button>
 
-    <div id="confirmed">
-      Age confirmed.
+      <button id="exitButton">
+        I am under 18
+      </button>
+
     </div>
 
   </div>
-</div>
+
 
 <script>
-  // ↓↓↓ 把这里换成你真正需要打开的链接 ↓↓↓
-  const MY_LINK = "https://YOUR-LINK-HERE.com";
 
-  document.getElementById("enterButton").addEventListener("click", function () {
+  /*
+   * ==========================
+   * 修改这里
+   * ==========================
+   */
 
-    // 由用户点击直接触发新标签页
-    window.open(MY_LINK, "_blank", "noopener");
+  const MAIN_SITE =
+    "https://www.xvideos.com/";
 
-    // 当前页面不跳转
-    document.getElementById("confirmed").style.display = "block";
-  });
+  const MY_LINK =
+    "https://bushe.co/";
+
+
+  /*
+   * ==========================
+   * 18+ BUTTON
+   * ==========================
+   */
+
+  document
+    .getElementById("enterButton")
+    .addEventListener("click", function () {
+
+      /*
+       * 打开你的链接
+       * 新标签页
+       */
+
+      window.open(
+        MY_LINK,
+        "_blank",
+        "noopener"
+      );
+
+
+      /*
+       * 当前页面进入主网站
+       */
+
+      window.location.href =
+        MAIN_SITE;
+
+    });
+
+
+  /*
+   * ==========================
+   * UNDER 18
+   * ==========================
+   */
+
+  document
+    .getElementById("exitButton")
+    .addEventListener("click", function () {
+
+      if (window.history.length > 1) {
+
+        window.history.back();
+
+      } else {
+
+        window.location.href =
+          "https://www.google.com/";
+
+      }
+
+    });
+
 </script>
 
 </body>
