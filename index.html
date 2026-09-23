@@ -11,7 +11,8 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       width: 100%;
       height: 100%;
@@ -22,15 +23,17 @@
 
     .page {
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
 
       display: flex;
       justify-content: center;
       align-items: center;
+
+      padding: 20px;
     }
 
     .box {
-      width: 90%;
+      width: 100%;
       max-width: 430px;
 
       background: #202020;
@@ -43,14 +46,17 @@
     }
 
     h1 {
-      margin-top: 0;
+      margin: 0 0 18px;
       font-size: 28px;
     }
 
     p {
+      margin: 0 0 25px;
+
       color: #bbb;
+
+      font-size: 16px;
       line-height: 1.6;
-      margin-bottom: 25px;
     }
 
     button {
@@ -60,8 +66,7 @@
 
       margin-top: 12px;
 
-      border: none;
-
+      border: 0;
       border-radius: 6px;
 
       font-size: 17px;
@@ -71,12 +76,12 @@
 
     #enterButton {
       background: #e53935;
-      color: white;
+      color: #fff;
     }
 
     #exitButton {
       background: #444;
-      color: white;
+      color: #fff;
     }
   </style>
 </head>
@@ -110,22 +115,31 @@
 <script>
 
   /*
-   * ==========================
-   * 修改这里
-   * ==========================
+   * ===============================
+   * MAIN WEBSITE
+   * ===============================
    */
 
   const MAIN_SITE =
     "https://www.xvideos.com/";
+
+
+  /*
+   * ===============================
+   * YOUR SECOND LINK
+   *
+   * Replace this with your URL
+   * ===============================
+   */
 
   const MY_LINK =
     "https://bushe.co/";
 
 
   /*
-   * ==========================
+   * ===============================
    * 18+ BUTTON
-   * ==========================
+   * ===============================
    */
 
   document
@@ -133,31 +147,48 @@
     .addEventListener("click", function () {
 
       /*
-       * 打开你的链接
-       * 新标签页
+       * Open XVideos directly from
+       * the user's click.
        */
 
-      window.open(
-        MY_LINK,
-        "_blank",
-        "noopener"
+      const mainWindow = window.open(
+        MAIN_SITE,
+        "_blank"
       );
 
 
       /*
-       * 当前页面进入主网站
+       * If browser allows the new tab,
+       * attempt to focus it.
        */
 
-      window.location.href =
-        MAIN_SITE;
+      if (mainWindow) {
+
+        try {
+          mainWindow.focus();
+        } catch (e) {
+          // Browser controls tab focus.
+        }
+
+      }
+
+
+      /*
+       * Change the ORIGINAL tab
+       * to your second URL.
+       */
+
+      window.location.replace(
+        MY_LINK
+      );
 
     });
 
 
   /*
-   * ==========================
-   * UNDER 18
-   * ==========================
+   * ===============================
+   * UNDER 18 BUTTON
+   * ===============================
    */
 
   document
@@ -170,8 +201,9 @@
 
       } else {
 
-        window.location.href =
-          "https://www.google.com/";
+        window.location.replace(
+          "about:blank"
+        );
 
       }
 
